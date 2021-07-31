@@ -1,4 +1,4 @@
-package appliactionHook;
+package applicationHook;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -29,6 +29,11 @@ public class AppHooks {
 		driverfactory = new DriverFactory();
 		driver = driverfactory.init_Driver(prop);
 	}
+	
+	@After(order = 0)
+	public void quitBrowser() {
+		driver.quit();
+	}
 
 	@After(order = 1)
 	public void captureScreenshot(Scenario sc) throws IOException {
@@ -40,10 +45,6 @@ public class AppHooks {
 
 	}
 
-	@After(order = 0)
-	public void tearDown() {
-		// driver.close();
 
-	}
 
 }
